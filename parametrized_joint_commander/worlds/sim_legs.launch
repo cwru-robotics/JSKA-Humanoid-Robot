@@ -1,0 +1,9 @@
+<launch>
+
+<env name="GAZEBO_MODEL_PATH" value="$(find parametrized_joint_commander)/models"/>
+
+	<include file="$(find gazebo_ros)/launch/empty_world.launch">
+ </include>
+	<node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-file /home/tes77/FinaLimbs.urdf -urdf -z 2 -model Myrobot" />
+<node name="anything" pkg="parametrized_joint_commander" type="joint_commander"/>
+</launch>

@@ -1,0 +1,1113 @@
+<?xml version="1.0"?>
+<robot name="Detection">
+
+<link name="world"/>
+
+<link name="slide_intermediate_zy">
+	<inertial>
+		<mass value="0.001"/>
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<inertia ixx="0.0" iyy="0.0" izz="0.0" ixy="0" ixz="0" iyz="0"/>
+	</inertial>
+</link>
+<link name="slide_intermediate_yx">
+	<inertial>
+		<mass value="0.001"/>
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<inertia ixx="0.0" iyy="0.0" izz="0.0" ixy="0" ixz="0" iyz="0"/>
+	</inertial>
+</link>
+
+<joint name="slide_joint_z" type="prismatic">
+	<origin xyz="0 0 0" rpy="0 0 0"/>
+	<parent link="world"/>
+	<child link="slide_intermediate_zy"/>
+	<axis xyz="0 0 1" />
+	<limit effort="30" velocity="1.0" lower="-100" upper="100"/>
+</joint>
+<joint name="slide_joint_y" type="prismatic">
+	<origin xyz="0 0 0" rpy="0 0 0"/>
+	<parent link="slide_intermediate_zy"/>
+	<child link="slide_intermediate_yx"/>
+	<axis xyz="0 1 0" />
+	<limit effort="30" velocity="1.0" lower="-100" upper="100"/>
+</joint>
+<joint name="slide_joint_x" type="prismatic">
+	<origin xyz="0 0 0" rpy="0 0 0"/>
+	<parent link="slide_intermediate_yx"/>
+	<child link="Pelvis"/>
+	<axis xyz="1 0 0" />
+	<limit effort="30" velocity="1.0" lower="-100" upper="100"/>
+</joint>
+
+
+<link name="Pelvis">
+	<visual>			
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<geometry>
+			<box size="0.13815 0.24914 0.097469"/>
+		</geometry>
+	</visual>
+
+	<inertial>
+		<mass value="4.976"/>
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<inertia ixx="0.029678" iyy="0.011854" izz="0.033653" ixy="0" ixz="0" iyz="0"/>
+	</inertial>
+
+	<collision>		
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<geometry>
+			<box size="0.13815 0.24914 0.097469"/>
+		</geometry>
+	</collision>
+	
+	<!--Torso parts-->
+	<visual>			
+		<origin xyz="0 0 0.3" rpy="0 0 0" />
+		<geometry>
+			<box size="0.13815 0.24914 0.6"/>
+		</geometry>
+	</visual>
+	<visual>			
+		<origin xyz="0 0 0.7" rpy="0 0 0" />
+		<geometry>
+			<sphere radius="0.1"/>
+		</geometry>
+	</visual>
+	<visual>			
+		<origin xyz="0 0.175 0.3" rpy="0 0 0" />
+		<geometry>
+			<cylinder radius="0.05" length="0.5"/>
+		</geometry>
+	</visual>
+	<visual>			
+		<origin xyz="0 -0.175 0.3" rpy="0 0 0" />
+		<geometry>
+			<cylinder radius="0.05" length="0.5"/>
+		</geometry>
+	</visual>
+</link>
+<link name="Pelvis_sensor_visual">
+	<visual>			
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<geometry>
+			<box size="0.15 0.28 0.02"/>
+		</geometry>
+	</visual>
+	<inertial>
+		<mass value="0.1"/>
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<inertia ixx="0.029678" iyy="0.011854" izz="0.033653" ixy="0" ixz="0" iyz="0"/>
+	</inertial>
+	<collision>		
+		<origin xyz="-0.056756 -5.6944e-060.097055" rpy="0 0 0" />
+		<geometry>
+			<box size="0.1 0.1 0.1"/>
+		</geometry>
+	</collision>
+</link>
+<joint name="pelvis_sensor" type="prismatic">
+	<origin xyz="0 0 0" rpy="0 0 0"/>
+	<axis xyz="0 1 0" />
+	<limit effort="30" velocity="1.0" lower="0" upper="0"/>
+	<parent link="Pelvis"/>
+	<child link="Pelvis_sensor_visual"/>
+</joint>
+
+
+
+<link name="right_thigh_T1">
+	<inertial>
+		<mass value="0.0001"/>
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<inertia ixx="0" iyy="0" izz="0" ixy="0" ixz="0" iyz="0"/>
+	</inertial>
+</link>
+<link name="right_thigh_T2">
+	<inertial>
+		<mass value="0.0001"/>
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<inertia ixx="0" iyy="0" izz="0" ixy="0" ixz="0" iyz="0"/>
+	</inertial>
+</link>
+
+<link name="right_thigh">
+	<inertial>
+		<mass value="7.775"/>
+		<origin xyz="0 0 -0.22449" rpy="0 0 0" />
+		<inertia ixx="0.13681" iyy="0.13681" izz="0.01241" ixy="0" ixz="0" iyz="0"/>
+	</inertial>
+
+	<visual>
+		<origin xyz= "0 0 -0.22449" rpy="0 0 0"/>
+		<geometry>
+			<cylinder length="0.44898" radius="0.0656"/>
+		</geometry>
+	</visual>
+
+
+	<collision>
+		<origin xyz="0 0 -0.22449" rpy="0 0 0" />
+		<geometry>
+			<cylinder length="0.44898" radius="0.0565"/>
+		</geometry>
+	</collision>
+</link>
+
+<link name="right_thigh_sensor_visual">
+	<inertial>
+		<mass value="0.01"/>
+	
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<inertia ixx="0.13681" iyy="0.13681" izz="0.01241" ixy="0" ixz="0" iyz="0"/>
+	</inertial>
+	
+	<visual>			
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<geometry>
+			<cylinder length="0.05" radius="0.06"/>
+		</geometry>
+	</visual>
+
+	<collision>
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<geometry>
+			<cylinder length="0.05" radius="0.06"/>
+		</geometry>
+	</collision>
+</link>
+<joint name="rthigh_sensor" type="prismatic">
+	<origin xyz="0 0 0" rpy="0 0 0"/>
+	<axis xyz="0 1 0" />
+	<limit effort="30" velocity="1.0" lower="0" upper="0"/>
+	<parent link="right_thigh"/>
+	<child link="right_thigh_sensor_visual"/>
+</joint>
+
+<link name="left_thigh_T1">
+	<inertial>
+		<mass value="0.0001"/>
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<inertia ixx="0" iyy="0" izz="0" ixy="0" ixz="0" iyz="0"/>
+	</inertial>
+</link>
+
+
+<link name="left_thigh_T2">
+	<inertial>
+		<mass value="0.0001"/>
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<inertia ixx="0" iyy="0" izz="0" ixy="0" ixz="0" iyz="0"/>
+	</inertial>
+</link> 
+ 
+<link name="left_thigh">
+	<inertial>
+		<mass value="7.775"/>
+	
+		<origin xyz="0 0 -0.22449" rpy="0 0 0" />
+		<inertia ixx="0.13681" iyy="0.13681" izz="0.01241" ixy="0" ixz="0" iyz="0"/>
+	</inertial>
+ 
+ 
+	 <visual>			
+		<origin xyz="0 0 -0.22449" rpy="0 0 0" />
+		<geometry>
+			<cylinder length="0.44898" radius="0.0565"/>
+		</geometry>
+	</visual>
+
+	<collision>
+		<origin xyz="0 0 -0.22449" rpy="0 0 0" />
+		<geometry>
+			<cylinder length="0.44898" radius="0.0565"/>
+		</geometry>
+	</collision>
+</link>
+<link name="left_thigh_sensor_visual">
+	<inertial>
+		<mass value="0.01"/>
+	
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<inertia ixx="0.13681" iyy="0.13681" izz="0.01241" ixy="0" ixz="0" iyz="0"/>
+	</inertial>
+	
+	<visual>			
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<geometry>
+			<cylinder length="0.05" radius="0.06"/>
+		</geometry>
+	</visual>
+
+	<collision>
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<geometry>
+			<cylinder length="0.05" radius="0.06"/>
+		</geometry>
+	</collision>
+</link>
+<joint name="lthigh_sensor" type="prismatic">
+	<origin xyz="0 0 0" rpy="0 0 0"/>
+	<axis xyz="0 1 0" />
+	<limit effort="30" velocity="1.0" lower="0" upper="0"/>
+	<parent link="left_thigh"/>
+	<child link="left_thigh_sensor_visual"/>
+</joint>
+
+<link name="right_leg_T1">
+	<inertial>
+		<mass value="0.0001"/>
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<inertia ixx="0" iyy="0" izz="0" ixy="0" ixz="0" iyz="0"/>
+	</inertial>
+</link>
+ 
+ 
+<link name="right_leg">
+	<inertial>
+		<mass value="2.2703"/>
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<inertia ixx="0.031992" iyy="0.031992" izz="0.0015867" ixy="0" ixz="0" iyz="0"/>
+	</inertial>
+	<visual>
+			
+		<origin xyz="0 0 -0.2125" rpy="0 0 0" />
+		<geometry>
+			<cylinder length="0.40608" radius="0.037388"/>
+		</geometry>
+		<material name="color"/>
+	</visual>
+
+	<collision>
+		<!--box origin wrt jRightKnee-->
+		<origin xyz="0 0 -0.20304" rpy="0 0 0" />
+		<geometry>
+			<cylinder length="0.40608" radius="0.037388"/>
+		</geometry>
+	</collision>
+</link>
+
+<link name="left_leg_T1">
+	<inertial>
+		<mass value="0.001"/>
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<inertia ixx="0" iyy="0" izz="0" ixy="0" ixz="0" iyz="0"/>
+	</inertial>
+</link>
+
+<link name="left_leg">
+	<inertial>
+		<mass value="2.2703"/>
+		<origin xyz="0 0 -0.20304" rpy="0 0 0" />
+		<inertia ixx="0.031992" iyy="0.031992" izz="0.0015867" ixy="0" ixz="0" iyz="0"/>
+	</inertial>
+
+	<visual>
+		<origin xyz="0 0 -0.2125" rpy="0 0 0" />
+		<geometry>
+			<cylinder length="0.40608" radius="0.037388"/>
+		</geometry>
+		<material name="color"/>
+	</visual>
+
+	<collision>
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<geometry>
+			<cylinder length="0.40608" radius="0.037388"/>
+		</geometry>
+	</collision>
+</link>
+
+<link name="right_foot_T1">
+	<inertial>
+		<mass value="0.0001"/>
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<inertia ixx="0" iyy="0" izz="0" ixy="0" ixz="0" iyz="0"/>
+	</inertial>
+</link>
+
+<link name="right_foot_T2">
+	<inertial>
+		<mass value="0.0001"/>
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<inertia ixx="0" iyy="0" izz="0" ixy="0" ixz="0" iyz="0"/>
+	</inertial>
+</link>
+ 
+<link name="right_foot">
+	<inertial>
+		<mass value="0.8086"/>
+		<origin xyz="0.054652 0 -0.039254" rpy="0 0 0" />
+		<inertia ixx="0.00079209" iyy="0.0025944" izz="0.0025558" ixy="0" ixz="0" iyz="0"/>
+	</inertial> 
+ 
+	 <visual>
+			
+		<origin xyz="0.054652 0 -0.039254" rpy="0 0 0" />
+		<geometry>
+			<box size="0.17983 0.074775 0.078509"/>
+		</geometry>
+		<material name="Gazebo/Purple"/>
+	</visual>
+
+	<collision>		
+		<origin xyz="0.054652 0 -0.039254" rpy="0 0 0" />
+		<geometry>
+			<box size="0.17983 0.074775 0.078509"/>
+		</geometry>
+	</collision>
+</link>
+
+<link name="left_foot_T1">
+	<inertial>
+		<mass value="0.0001"/>
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<inertia ixx="0" iyy="0" izz="0" ixy="0" ixz="0" iyz="0"/>
+	</inertial>
+</link>
+
+<link name="left_foot_T2">
+	<inertial>
+		<mass value="0.0001"/>
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<inertia ixx="0" iyy="0" izz="0" ixy="0" ixz="0" iyz="0"/>
+	</inertial>
+</link> 
+
+<link name="left_foot">
+	<inertial>
+		<mass value="0.8086"/>
+			
+		<origin xyz="0.054652 0 -0.039254" rpy="0 0 0" />
+		<inertia ixx="0.00079209" iyy="0.0025944" izz="0.0025558" ixy="0" ixz="0" iyz="0"/>
+	</inertial>
+	<visual>
+		<origin xyz="0.054652 0 -0.039254" rpy="0 0 0" />
+		<geometry>
+			<box size="0.17983 0.074775 0.078509"/>
+		</geometry>
+	</visual>
+
+	<collision>
+		<origin xyz="0.054652 0 -0.039254" rpy="0 0 0" />
+		<geometry>
+			<box size="0.17983 0.074775 0.078509"/>
+		</geometry>
+	</collision>
+</link>
+<gazebo reference="left_foot">
+	<material>Gazebo/Purple</material>
+</gazebo>
+<gazebo reference="right_foot">
+	<material>Gazebo/Purple</material>
+</gazebo>
+<!--"Gold" is actually a decent approximation of a skin tone-->
+<gazebo reference="Pelvis">
+	<material>Gazebo/Gold</material>
+</gazebo>
+<gazebo reference="left_leg">
+	<material>Gazebo/Gold</material>
+</gazebo>
+<gazebo reference="left_thigh">
+	<material>Gazebo/Gold</material>
+</gazebo>
+<gazebo reference="right_leg">
+	<material>Gazebo/Gold</material>
+</gazebo>
+<gazebo reference="right_thigh">
+	<material>Gazebo/Gold</material>
+</gazebo>
+<gazebo reference="Pelvis_sensor_visual">
+	<material>Gazebo/Purple</material>
+</gazebo>
+<gazebo reference="left_thigh_sensor_visual">
+	<material>Gazebo/Purple</material>
+</gazebo>
+<gazebo reference="right_thigh_sensor_visual">
+	<material>Gazebo/Purple</material>
+</gazebo>
+
+<!--JOINTS-->
+<joint name="right_hipjoint_rotx" type="revolute">
+	<origin xyz=" 0 0.125 0" rpy="0 0 0"/>
+	<parent link="Pelvis"/>
+	<child link="right_thigh_T1"/>
+	<dynamics damping="0.1" friction="0.0"/>
+	<limit effort="30" velocity="1.0" lower="-0.785398" upper="0.523599" />
+	<axis xyz="1 0 0" />
+</joint>
+
+<joint name="right_hipjoint_roty" type="revolute">
+	<origin xyz="0 0 0" rpy="0 0 0"/>
+	<parent link="right_thigh_T1"/>
+	<child link="right_thigh_T2"/>
+	<dynamics damping="0.1" friction="0.0"/>
+	<limit effort="30" velocity="1.0" lower="-0.261799" upper="2.0944" />
+	<axis xyz="0 1 0" />
+</joint>
+
+<joint name="right_hipjoint_rotz" type="revolute">
+	<origin xyz="0 0 0" rpy="0 0 0"/>
+	<parent link="right_thigh_T2"/>
+	<child link="right_thigh"/>
+	<dynamics damping="0.1" friction="0.0"/>
+	<limit effort="30" velocity="1.0" lower="-0.785398" upper="0.785398" />
+	<axis xyz="0 0 1" />
+</joint>
+
+<joint name="left_hipjoint_rotx" type="revolute">
+	<origin xyz="0 -0.125 0" rpy="0 0 0"/>
+	<parent link="Pelvis"/>
+	<child link="left_thigh_T1"/>
+	<dynamics damping="0.1" friction="0.0"/>
+	<limit effort="30" velocity="1.0" lower="-0.523599" upper="0.785398" />
+	<axis xyz="1 0 0" />
+</joint>
+
+<joint name="left_hipjoint_roty" type="revolute">
+	<origin xyz="0 0 0" rpy="0 0 0"/>
+	<parent link="left_thigh_T1"/>
+	<child link="left_thigh_T2"/>
+	<dynamics damping="0.1" friction="0.0"/>
+	<limit effort="30" velocity="1.0" lower="-0.261799" upper="2.0944" />
+	<axis xyz="0 1 0" />
+</joint>
+
+<joint name="left_hipjoint_rotz" type="revolute">
+	<origin xyz="0 0 0" rpy="0 0 0"/>
+	<parent link="left_thigh_T2"/>
+	<child link="left_thigh"/>
+	<dynamics damping="0.1" friction="0.0"/>
+	<limit effort="30" velocity="1.0" lower="-0.785398" upper="0.785398" />
+	<axis xyz="0 0 1" />
+</joint>
+
+<joint name="right_kneejoint_roty" type="revolute">
+	<origin xyz="0 0 -0.425" rpy="0 0 0"/>
+	<parent link="right_thigh"/>
+	<child link="right_leg_T1"/>
+	<dynamics damping="0.1" friction="0.0"/>
+	<limit effort="30" velocity="1.0" lower="0" upper="2.35619" />
+	<axis xyz="0 1 0" />
+</joint>
+
+<joint name="right_kneejoint_rotz" type="revolute">
+	<origin xyz="0 0 0" rpy="0 0 0"/>
+	<parent link="right_leg_T1"/>
+	<child link="right_leg"/>
+	<dynamics damping="0.1" friction="0.0"/>
+	<limit effort="30" velocity="1.0" lower="-0.698132" upper="0.523599" />
+	<axis xyz="0 0 1" />
+</joint>
+
+<joint name="left_kneejoint_roty" type="revolute">
+	<origin xyz="0 0 -0.425" rpy="0 0 0"/>
+	<parent link="left_thigh"/>
+	<child link="left_leg_T1"/>
+	<dynamics damping="0.1" friction="0.0"/>
+	<limit effort="30" velocity="1.0" lower="0" upper="2.35619" />
+	<axis xyz="0 1 0" />
+</joint>
+
+<joint name="left_kneejoint_rotz" type="revolute">
+	<origin xyz="0 0 0" rpy="0 0 0"/>
+	<parent link="left_leg_T1"/>
+	<child link="left_leg"/>
+	<dynamics damping="0.1" friction="0.0"/>
+	<limit effort="30" velocity="1.0" lower="-0.523599" upper="0.698132" />
+	<axis xyz="0 0 1" />
+</joint>
+
+<joint name="right_anklejoint_rotx" type="revolute">
+	<origin xyz="0 0 -0.405" rpy="0 0 0"/>
+	<parent link="right_leg"/>
+	<child link="right_foot_T1"/>
+	<dynamics damping="0.1" friction="0.0"/>
+	<limit effort="30" velocity="1.0" lower="-0.610865" upper="0.785398" />
+	<axis xyz="1 0 0" />
+</joint>
+
+<joint name="right_anklejoint_roty" type="revolute">
+	<origin xyz="0 0 0" rpy="0 0 0"/>
+	<parent link="right_foot_T1"/>
+	<child link="right_foot_T2"/>
+	<dynamics damping="0.1" friction="0.0"/>
+	<limit effort="30" velocity="1.0" lower="-0.523599" upper="0.872665" />
+	<axis xyz="0 1 0" /> 
+</joint>
+
+<joint name="right_anklejoint_rotz" type="revolute">
+	<origin xyz="0 0 0" rpy="0 0 0"/>
+	<parent link="right_foot_T2"/>
+	<child link="right_foot"/>
+	<dynamics damping="0.1" friction="0.0"/>
+	<limit effort="30" velocity="1.0" lower="-0.436332" upper="0.872665" />
+	<axis xyz="0 0 1" />
+</joint>
+
+<joint name="left_anklejoint_rotx" type="revolute">
+	<origin xyz="0 0 -0.405" rpy="0 0 0"/>
+	<parent link="left_leg"/>
+	<child link="left_foot_T1"/>
+	<dynamics damping="0.1" friction="0.0"/>
+	<limit effort="30" velocity="1.0" lower="-0.785398" upper="0.610865" />
+	<axis xyz="1 0 0" />
+</joint>
+
+<joint name="left_anklejoint_roty" type="revolute">
+	<origin xyz="0 0 0" rpy="0 0 0"/>
+	<parent link="left_foot_T1"/>
+	<child link="left_foot_T2"/>
+	<dynamics damping="0.1" friction="0.0"/>
+	<limit effort="30" velocity="1.0" lower="-0.523599" upper="0.872665" />
+	<axis xyz="0 1 0" />
+</joint>
+
+<joint name="left_anklejoint_rotz" type="revolute">
+	<origin xyz="0 0 0" rpy="0 0 0"/>
+	<parent link="left_foot_T2"/>
+	<child link="left_foot"/>
+	<dynamics damping="0.1" friction="0.0"/>
+	<limit effort="30" velocity="1.0" lower="-0.872665" upper="0.436332" />
+	<axis xyz="0 0 1" />
+</joint>
+
+
+
+<!--IMU : joint , link , sensor-->
+
+
+<joint name="imu_joint" type="fixed">
+	<axis xyz="1 0 0"/>
+	<origin xyz="0 0 0.105"/>
+	<parent link="Pelvis"/>
+	<child link="imu_link"/>
+</joint>
+
+<link name="imu_link">
+	<inertial>
+		<mass value="0.001"/>
+		<origin rpy="0 0 0" xyz="0 0 0"/>
+		<inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="0.0001"/>
+	</inertial>
+	<visual>
+		<origin rpy="0 0 0" xyz="0 0 0"/>
+		<geometry>
+			<box size="0.01 0.01 0.01"/>
+		</geometry>
+		<material name="red"/>
+	</visual>
+	<collision>
+		<origin rpy="0 0 0" xyz="0 0 0"/>
+		<geometry>
+			<box size=".01 .01 .01"/>
+		</geometry>
+	</collision>
+</link>
+
+
+
+<!-- SENSORS & Plugins-->
+ <!-- Pelvis --> 
+<gazebo reference="Pelvis">
+<gravity>true</gravity>
+<sensor name="imu_sensor_pelvis" type="imu">
+<always_on>true</always_on>
+<update_rate>100</update_rate>
+<visualize>true</visualize>
+<topic>/pelvis/imu</topic>
+<plugin filename="libgazebo_ros_imu_sensor.so" name="pelvis_imu">
+<topicName>pelvis_imu</topicName>
+<bodyName>Pelvis</bodyName>
+<updateRateHZ>10.0</updateRateHZ>
+<gaussianNoise>0.0</gaussianNoise>
+<xyzOffset>0 0 0</xyzOffset>
+<rpyOffset>0 0 0</rpyOffset>
+<frameName>Pelvis</frameName>
+<initialOrientationAsReference>false</initialOrientationAsReference>
+</plugin>
+<pose>0 0 0 0 0 0</pose>
+<parent link="Pelvis"/>
+<origin xyz="-0.056756 -5.6944e-060.097055" rpy="-0.3247 0.958262.4984"/>
+</sensor>
+</gazebo>
+
+
+<gazebo reference="Pelvis">
+<sensor type="ray" name="sonar1">
+<pose>0.25 0 0 0 0 0</pose>
+<visualize>true</visualize>
+<update_rate>5</update_rate>
+<ray>
+<scan>
+<horizontal>
+<samples>10</samples>
+<resolution>1.0</resolution>
+<min_angle>-0.4</min_angle>
+<max_angle>0.4</max_angle>
+</horizontal>
+<vertical>
+<samples>10</samples>
+<resolution>1</resolution>
+<min_angle>-0.4</min_angle>
+<max_angle>0.4</max_angle>
+</vertical>
+</scan>
+<range>
+<min>0.01</min>
+<max>2.2</max>
+<resolution>0.01</resolution>
+</range>
+</ray>
+<plugin filename="libgazebo_ros_range.so" name="gazebo_ros_range">
+<gaussianNoise>0.005</gaussianNoise>
+<alwaysOn>true</alwaysOn>
+<updateRate>5</updateRate>
+<topicName>sonar_pelvis</topicName>
+<frameName>Pelvis</frameName>
+<fov>0.5</fov>
+<radiation>ultrasound</radiation>
+</plugin>
+</sensor>
+</gazebo>
+
+
+<!--right thigh-->
+<gazebo reference="right_thigh">
+<gravity>true</gravity>
+<sensor name="imu_sensor_rthigh" type="imu">
+<always_on>true</always_on>
+<update_rate>100</update_rate>
+<visualize>true</visualize>
+<topic>/right_thigh/imu</topic>
+<plugin filename="libgazebo_ros_imu_sensor.so" name="RT_imu"> 
+<topicName>/imu/right_thigh</topicName>
+<bodyName>right_thigh</bodyName>
+<updateRateHZ>10.0</updateRateHZ>
+<gaussianNoise>0.0</gaussianNoise>
+<xyzOffset>0 0 0</xyzOffset>
+<rpyOffset>0 0 0</rpyOffset>
+<frameName>right_thigh</frameName>
+<initialOrientationAsReference>false</initialOrientationAsReference>
+</plugin>
+<pose>0 0 0 0 0 0</pose>
+<parent link="right_thigh"/>
+<origin xyz="0.012972-0.04567-0.26981" rpy="2.82471.41021.8304"/>
+</sensor>
+</gazebo>
+<gazebo reference="right_thigh">
+<sensor type="ray" name="sonar2">
+<pose>0.25 0 0 0 0 0</pose>
+<visualize>true</visualize>
+<update_rate>5</update_rate>
+<ray>
+<scan>
+<horizontal>
+<samples>10</samples>
+<resolution>1.0</resolution>
+<min_angle>-0.4</min_angle>
+<max_angle>0.4</max_angle>
+</horizontal>
+<vertical>
+<samples>10</samples>
+<resolution>1</resolution>
+<min_angle>-0.4</min_angle>
+<max_angle>0.4</max_angle>
+</vertical>
+</scan>
+<range>
+<min>0.01</min>
+<max>2.2</max>
+<resolution>0.01</resolution>
+</range>
+</ray>
+<plugin filename="libgazebo_ros_range.so" name="gazebo_ros_range">
+<gaussianNoise>0.005</gaussianNoise>
+<alwaysOn>true</alwaysOn>
+<updateRate>5</updateRate>
+<topicName>sonar_right_thigh</topicName>
+<frameName>right_thigh</frameName>
+<fov>0.5</fov>
+<radiation>ultrasound</radiation>
+</plugin>
+</sensor>
+ </gazebo>
+
+<!--Left thigh-->
+<gazebo reference="left_thigh">
+<gravity>true</gravity>
+<sensor name="imu_sensor_lthigh" type="imu">
+<always_on>true</always_on>
+<update_rate>100</update_rate>
+<visualize>true</visualize>
+<!--topic>/imu/left_thigh</topic-->
+<plugin filename="libgazebo_ros_imu_sensor.so" name="LT_imu"> 
+<topicName>/left_thigh/imu</topicName>
+<bodyName>left_thigh</bodyName>
+<updateRateHZ>10.0</updateRateHZ>
+<gaussianNoise>0.0</gaussianNoise>
+<xyzOffset>0 0 0</xyzOffset>
+<rpyOffset>0 0 0</rpyOffset>
+<frameName>left_thich</frameName>
+<initialOrientationAsReference>false</initialOrientationAsReference>
+</plugin>
+<pose>0 0 0 0 0 0</pose>
+<parent link="left_thigh"/>
+<origin xyz="0.012973 0.04567-0.26981" rpy="-2.32141.4159 -1.1979"/>
+</sensor>
+</gazebo>
+<gazebo reference="left_thigh">
+<sensor type="ray" name="sonar3">
+<pose>0.25 0 0 0 0 0</pose>
+<visualize>true</visualize>
+<update_rate>5</update_rate>
+<ray>
+<scan>
+<horizontal>
+<samples>10</samples>
+<resolution>1.0</resolution>
+<min_angle>-0.4</min_angle>
+<max_angle>0.4</max_angle>
+</horizontal>
+<vertical>
+<samples>10</samples>
+<resolution>1</resolution>
+<min_angle>-0.4</min_angle>
+<max_angle>0.4</max_angle>
+</vertical>
+</scan>
+<range>
+<min>0.01</min>
+<max>2.2</max>
+<resolution>0.01</resolution>
+</range>
+</ray>
+<plugin filename="libgazebo_ros_range.so" name="gazebo_ros_range">
+<gaussianNoise>0.005</gaussianNoise>
+<alwaysOn>true</alwaysOn>
+<updateRate>5</updateRate>
+<topicName>sonar_left_thigh</topicName>
+<frameName>left_thigh</frameName>
+<fov>0.5</fov>
+<radiation>ultrasound</radiation>
+</plugin>
+</sensor>
+ </gazebo>
+
+<!--right leg-->
+<gazebo reference="right_leg">
+<gravity>true</gravity>
+<sensor name="imu_sensor_rleg" type="imu">
+<always_on>true</always_on>
+<update_rate>100</update_rate>
+<visualize>true</visualize>
+<!--topic>__default_topic__</topic-->
+<plugin filename="libgazebo_ros_imu_sensor.so" name="RL_imu"> 
+<topicName>/right_leg/imu</topicName>
+<bodyName>right_leg</bodyName>
+<updateRateHZ>10.0</updateRateHZ>
+<gaussianNoise>0.0</gaussianNoise>
+<xyzOffset>0 0 0</xyzOffset>
+<rpyOffset>0 0 0</rpyOffset>
+<frameName>right_leg</frameName>
+<initialOrientationAsReference>false</initialOrientationAsReference>
+</plugin>
+<pose>0 0 0 0 0 0</pose>
+<parent link="right_leg"/>
+<origin xyz="0.030805 0.0070514-0.13253" rpy="-2.92871.4733 -1.9582"/>
+</sensor>
+</gazebo>
+<!--gazebo reference="right_leg">
+<sensor type="ray" name="sonar4">
+<pose>0.25 0 0 0 0 0</pose>
+<visualize>true</visualize>
+<update_rate>5</update_rate>
+<ray>
+<scan>
+<horizontal>
+<samples>5</samples>
+<resolution>1.0</resolution>
+<min_angle>-0.25</min_angle>
+<max_angle>0.25</max_angle>
+</horizontal>
+<vertical>
+<samples>5</samples>
+<resolution>1</resolution>
+<min_angle>-0.25</min_angle>
+<max_angle>0.25</max_angle>
+</vertical>
+</scan>
+<range>
+<min>0.01</min>
+<max>0.75</max>
+<resolution>0.01</resolution>
+</range>
+</ray>
+<plugin filename="libgazebo_ros_range.so" name="gazebo_ros_range">
+<gaussianNoise>0.005</gaussianNoise>
+<alwaysOn>true</alwaysOn>
+<updateRate>5</updateRate>
+<topicName>sonar_right_leg</topicName>
+<frameName>right_leg</frameName>
+<fov>0.5</fov>
+<radiation>ultrasound</radiation>
+</plugin>
+</sensor>
+ </gazebo-->
+
+<!--left leg-->
+<gazebo reference="left_leg">
+<gravity>true</gravity>
+<sensor name="imu_sensor_lleg" type="imu">
+<always_on>true</always_on>
+<update_rate>100</update_rate>
+<visualize>true</visualize>
+<!--topic>left_leg/imu</topic-->
+<plugin filename="libgazebo_ros_imu_sensor.so" name="LL_imu"> 
+<topicName>/left_leg/imu</topicName>
+<bodyName>left_leg</bodyName>
+<updateRateHZ>10.0</updateRateHZ>
+<gaussianNoise>0.0</gaussianNoise>
+<xyzOffset>0 0 0</xyzOffset>
+<rpyOffset>0 0 0</rpyOffset>
+<frameName>left_leg</frameName>
+<initialOrientationAsReference>false</initialOrientationAsReference>
+</plugin>
+<pose>0 0 0 0 0 0</pose>
+<parent link="left_leg"/>
+<origin xyz="0.030805-0.0070515-0.13253" rpy="-2.61561.38172.7867"/>
+</sensor>
+</gazebo>
+
+<!--gazebo reference="left_leg">
+	<sensor type="ray" name="sonar5">
+		<pose>0.25 0 0 0 0 0</pose>
+		<visualize>true</visualize>
+		<update_rate>5</update_rate>
+		<ray>
+			<scan>
+				<horizontal>
+					<samples>5</samples>
+					<resolution>1</resolution>
+					<min_angle>-0.25</min_angle>
+					<max_angle>0.25</max_angle>
+				</horizontal>
+				<vertical>
+					<samples>5</samples>
+					<resolution>1</resolution>
+					<min_angle>-0.25</min_angle>
+					<max_angle>0.25</max_angle>
+				</vertical>
+			</scan>
+			<range>
+				<min>0.01</min>
+				<max>0.75</max>
+				<resolution>0.01</resolution>
+			</range>
+		</ray>
+		<plugin filename="libgazebo_ros_range.so" name="gazebo_ros_range">
+			<gaussianNoise>0.005</gaussianNoise>
+			<alwaysOn>true</alwaysOn>
+			<updateRate>5</updateRate>
+			<topicName>sonar_left_leg</topicName>
+			<frameName>left_leg</frameName>
+			<fov>0.5</fov>
+			<radiation>ultrasound</radiation>
+		</plugin>
+	</sensor>
+</gazebo-->
+
+<!--right foot-->
+<gazebo reference="right_foot">
+<gravity>true</gravity>
+<sensor name="imu_sensor_rfoot" type="imu">
+<always_on>true</always_on>
+<update_rate>100</update_rate>
+<visualize>true</visualize>
+<!--topic>/right_foot/imu</topic-->
+<plugin filename="libgazebo_ros_imu_sensor.so" name="RF_imu"> 
+<topicName>/right_foot/imu</topicName>
+<bodyName>right_foot</bodyName>
+<updateRateHZ>10.0</updateRateHZ>
+<gaussianNoise>0.0</gaussianNoise>
+<xyzOffset>0 0 0</xyzOffset>
+<rpyOffset>0 0 0</rpyOffset>
+<frameName>right_foot</frameName>
+<initialOrientationAsReference>false</initialOrientationAsReference>
+</plugin>
+<pose>0 0 0 0 0 0</pose>
+<parent link="right_foot"/>
+<origin xyz="0.083701 0.0013928 -0.011817" rpy="0.30301 0.49685-0.19697"/>
+</sensor>
+
+<light type="point" name="point_light_r">
+	<!--Position w.r.t the center of the foot-->
+	<pose>0 0.1 0.1 0 0 0</pose>
+	<!--Color: First three numbers are amount of red, green, and blue (so current setting is slightly less blue = slightly yellowish). The last number should always be 1-->
+	<diffuse>1 1 0.9 1</diffuse>
+	<!--How far the light reaches. All constant means it goes forever, all quadratic means it drops off quickly. A real light following the inverse square law is 100% quadratic, but real lights don't emerge from a point like simulated lights do. I don't think there's much need to mess with this.-->
+	<attenuation>
+		<range>50</range>
+		<linear>0.2</linear>
+		<constant>0.8</constant>
+		<quadratic>0.01</quadratic>
+	</attenuation>
+	<cast_shadows>true</cast_shadows>
+</light>
+</gazebo>
+
+<!--gazebo reference="right_foot">
+<sensor type="ray" name="sonar6">
+<pose>0.25 0 0 0 0 0</pose>
+<visualize>true</visualize>
+<update_rate>5</update_rate>
+<ray>
+<scan>
+<horizontal>
+<samples>5</samples>
+<resolution>1.0</resolution>
+<min_angle>-0.25</min_angle>
+<max_angle>0.25</max_angle>
+</horizontal>
+<vertical>
+<samples>5</samples>
+<resolution>1</resolution>
+<min_angle>-0.25</min_angle>
+<max_angle>0.25</max_angle>
+</vertical>
+</scan>
+<range>
+<min>0.01</min>
+<max>0.75</max>
+<resolution>0.01</resolution>
+</range>
+</ray>
+<plugin filename="libgazebo_ros_range.so" name="gazebo_ros_range">
+<gaussianNoise>0.005</gaussianNoise>
+<alwaysOn>true</alwaysOn>
+<updateRate>5</updateRate>
+<topicName>sonar_right_foot</topicName>
+<frameName>right_foot</frameName>
+<fov>0.5</fov>
+<radiation>ultrasound</radiation>
+</plugin>
+</sensor>
+ </gazebo-->
+
+<!--left foot-->
+<gazebo reference="left_foot">
+<gravity>false</gravity>
+<sensor name="imu_sensor_lfoot" type="imu">
+<always_on>true</always_on>
+<update_rate>100</update_rate>
+<visualize>true</visualize>
+<topic>/left_foot/imu</topic>
+<plugin filename="libgazebo_ros_imu_sensor.so" name="LF_imu"> 
+<topicName>left_foot/imu</topicName>
+<bodyName>left_foot</bodyName>
+<updateRateHZ>10.0</updateRateHZ>
+<gaussianNoise>0.0</gaussianNoise>
+<xyzOffset>0 0 0</xyzOffset>
+<rpyOffset>0 0 0</rpyOffset>
+<frameName>left_foot</frameName>
+<initialOrientationAsReference>false</initialOrientationAsReference>
+</plugin>
+<pose>0 0 0 0 0 0</pose>
+<parent link="left_foot"/>
+<origin xyz="0.083701-0.0013929 -0.011817" rpy="-0.108620.4501 0.37976"/>
+</sensor>
+
+<light type="point" name="point_light_l">
+	<!--Position w.r.t the center of the foot-->
+	<pose>0 0.1 0.1 0 0 0</pose>
+	<!--Color: First three numbers are amount of red, green, and blue (so current setting is slightly less blue = slightly yellowish). The last number should always be 1-->
+	<diffuse>1 1 0.9 1</diffuse>
+	<!--How far the light reaches. All constant means it goes forever, all quadratic means it drops off quickly. A real light following the inverse square law is 100% quadratic, but real lights don't emerge from a point like simulated lights do. I don't think there's much need to mess with this.-->
+	<attenuation>
+		<range>50</range>
+		<linear>0.2</linear>
+		<constant>0.8</constant>
+		<quadratic>0.01</quadratic>
+	</attenuation>
+	<cast_shadows>true</cast_shadows>
+</light>
+</gazebo>
+
+<!--gazebo reference="left_foot">
+	<sensor type="ray" name="sonar7">
+		<pose>0.25 0 0 0 0 0</pose>
+		<visualize>true</visualize>
+		<update_rate>5</update_rate>
+		<ray>
+			<scan>
+				<horizontal>
+					<samples>5</samples>
+					<resolution>1.0</resolution>
+					<min_angle>-0.25</min_angle>
+					<max_angle>0.25</max_angle>
+				</horizontal>
+				<vertical>
+					<samples>5</samples>
+					<resolution>1</resolution>
+					<min_angle>-0.25</min_angle>
+					<max_angle>0.25</max_angle>
+				</vertical>
+			</scan>
+			<range>
+				<min>0.01</min>
+				<max>0.75</max>
+				<resolution>0.01</resolution>
+			</range>
+		</ray>
+		<plugin filename="libgazebo_ros_range.so" name="gazebo_ros_range">
+			<gaussianNoise>0.005</gaussianNoise>
+			<alwaysOn>true</alwaysOn>
+			<updateRate>5</updateRate>
+			<topicName>sonar_left_foot</topicName>
+			<frameName>left_foot</frameName>
+			<fov>0.5</fov>
+			<radiation>ultrasound</radiation>
+		</plugin>
+	</sensor>
+</gazebo-->
+
+
+ <!-- Joint Control Plugin -->
+<gazebo>
+	<plugin name="set_joint_position" filename="libset_joint_position_plugin.so">
+		<topicName> /Detection </topicName>
+		<joints>
+			slide_joint_z
+			slide_joint_y
+			slide_joint_x
+			right_hipjoint_rotx
+			right_hipjoint_roty
+			right_hipjoint_rotz
+			left_hipjoint_rotx
+			left_hipjoint_roty
+			left_hipjoint_rotz
+			right_kneejoint_roty
+			right_kneejoint_rotz
+			left_kneejoint_roty
+			left_kneejoint_rotz
+			right_anklejoint_rotx
+			right_anklejoint_roty
+			right_anklejoint_rotz
+			left_anklejoint_rotx
+			left_anklejoint_roty
+			left_anklejoint_rotz
+			imu_joint
+		</joints>
+	</plugin>
+	
+	<plugin name="fall_guy" filename="libfall_guy.so">
+	</plugin>
+</gazebo>
+
+
+
+
+
+
+</robot>

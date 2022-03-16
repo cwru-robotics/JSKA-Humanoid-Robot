@@ -1,0 +1,7 @@
+<launch>
+	<include file="$(find gazebo_ros)/launch/empty_world.launch">
+	<arg name="world_name" value="$(find parametrized_joint_commander)/worlds/cable_distant.world"/>
+ </include>
+	<node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-file /home/jsemeeshat/Desktop/Dissertaion/FinaLimbs.urdf -urdf -z 2 -model Myrobot" />
+<node name="anything" pkg="parametrized_joint_commander" type="joint_commander"/>
+</launch>
